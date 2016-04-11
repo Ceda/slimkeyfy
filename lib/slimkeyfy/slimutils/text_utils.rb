@@ -25,7 +25,7 @@ class SlimKeyfy::Slimutils::TextUtils
   end
 
   def prepare_string(text)
-    self.truncate(self.strip_tags(text), length: 30,  omission: '', separator: ' ', escape: false)
+    self.truncate(self.strip_tags(text), length: 20,  omission: '', separator: ' ', escape: false)
   end
 
   def is_plain_text?(text)

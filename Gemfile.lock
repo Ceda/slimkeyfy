@@ -43,9 +43,9 @@ PLATFORMS
 
 DEPENDENCIES
   pry-rails
-  rails-html-sanitizer
+  rails-html-sanitizer (~> 1.0.3)
   rspec
-  yandex-translator
+  yandex-translator (~> 0.3.2)
 
 BUNDLED WITH
    1.11.2

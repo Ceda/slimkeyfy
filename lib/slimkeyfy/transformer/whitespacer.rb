@@ -24,11 +24,19 @@ class SlimKeyfy::Transformer::Whitespacer
     lead = leading_nbsp(body)
     trail = trailing_nsbp(body, tag)
 
-    body = lead ? body.sub("&nbsp;", "") : body
-    body = trail ? body.reverse.sub(";psbn&", "").reverse : body
+    body = !lead.empty? ? body[6..-1] : body
+    body = !trail.empty? ? body.reverse[6..-1].reverse : body
+
+    body = cleanup_nbsp(body)
 
     tag = tag.gsub(tag, "#{tag}#{lead}#{trail}")
-    [body.gsub("&nbsp;", " "), tag.gsub("=><", "=<>")]
+    [body, tag.gsub("=><", "=<>")]
+  end
+
+  def self.cleanup_nbsp(body)
+    body = body[6..-1] if body.start_with?("&nbsp;")
+    body = body.reverse[6..-1].reverse if body.end_with?("&nbsp;")
+    body
   end
 
   def self.leading_nbsp(body)
@@ -38,7 +46,7 @@ class SlimKeyfy::Transformer::Whitespacer
 
   def self.trailing_nsbp(body, tag)
     return "" if tag.start_with?("=>")
-    return ">"  if body.end_with?("&nbsp;")
+    return ">" if body.end_with?("&nbsp;")
     ""
   end
 
