@@ -29,7 +29,7 @@ class SlimKeyfy::Console::Commandline
       exit
     end
     opts.on_tail('-v', '--version', 'Show current version') do
-      puts "0.1"
+      puts SlimKeyfy::VERSION
       exit
     end
     opts.on_tail('-R', '--recursive', 'If a directory is given all subdirectories will be walked either.
